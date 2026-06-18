@@ -2,7 +2,7 @@ from core.http_client import HttpClient
 from models.task import TaskResponse
 
 
-class TaskServices(HttpClient):
+class TaskService(HttpClient):
     SERVICE_URL = '/boards'
 
     def headers(self, access_token: str):

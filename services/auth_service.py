@@ -26,4 +26,3 @@ class AuthentificationService(HttpClient):
         }
 
         return TokenResponse(**HttpClient().post(f'{self.SERVICE_URL}/login', body=body))
-    
