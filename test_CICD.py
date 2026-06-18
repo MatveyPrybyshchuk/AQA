@@ -1,3 +1,5 @@
 
 def check_CI_CD():
-    pass
+    a = 2
+    b = a + 1
+    print(b)
