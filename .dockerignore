@@ -1,9 +1,0 @@
-__pycache__
-
-.allure-results
-.pytest_cache
-.venv
-
-.DS_Store
-*.db
-*.sqlite3
