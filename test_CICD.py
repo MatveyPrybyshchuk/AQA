@@ -1,5 +1,5 @@
 """module docstring"""
-def check_CICD():
+def check_cicd():
     """function docstring"""
     a = 2
     b = a + 1
