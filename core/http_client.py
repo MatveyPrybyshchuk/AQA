@@ -1,11 +1,11 @@
 import json
-
+import os
 import requests
 
 from core.log_base import logger
 
 class HttpClient:
-    DOMAIN = 'http://localhost:8000'
+    DOMAIN = os.getenv('BASE_URL', 'http://localhost:8000')
     
     def make_request(self, method, url, body: dict | None = None, headers: dict | None = None):
         response = requests.request(method, self.DOMAIN + url, data=json.dumps(body) if body else None, headers=headers)
