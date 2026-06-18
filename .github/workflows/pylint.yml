@@ -1,5 +1,13 @@
-name: Pylint
+name: Check code with Pylint
 
+run: |
+    py_files=$(git ls-files '*.py')
+    if [ -n "$py_files" ]; then
+      pylint $py_files
+    else
+      echo "No Python files found, skipping pylint."
+    fi
+    
 on: [push]
 
 jobs:
