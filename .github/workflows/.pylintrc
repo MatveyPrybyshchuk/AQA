@@ -1,0 +1,3 @@
+[MESSAGES CONTROL]
+# Отключаем все проверки invalid-name (не рекомендуется)
+disable=C0103
