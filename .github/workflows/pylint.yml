@@ -22,12 +22,13 @@ jobs:
           pip install pylint
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
+
       - name: Analysing the code with pylint
         run: |
           py_files=$(git ls-files '*.py')
           if [ -n "$py_files" ]; then
-            pylint $py_files
+            pylint $py_files --rcfile=.pylintrc
           else
             echo "No Python files found, skipping pylint."
           fi
-          
+        
