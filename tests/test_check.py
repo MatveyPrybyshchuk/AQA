@@ -5,7 +5,7 @@ from pages.login_page import LoginPage
 from pages.dashboard_page import DashboardPage
 from pages.boards_page import BoardsPage
 from pages.tasks_page import TasksPage
-from elements import profile_element
+from elements.locators import LoginPageLocators
 
 # Тест на лоиг пейджу
 @pytest.mark.play
@@ -74,10 +74,10 @@ def test_user_profile(page: Page):
 
     user_profile.click()
 
-    expect(page.locator(profile_element.user_username)).to_be_visible()
-    expect(page.locator(profile_element.user_email)).to_be_visible()
-    expect(page.locator(profile_element.user_avatar)).to_be_visible()
-    expect(page.locator(profile_element.user_logout)).to_be_visible()
+    expect(page.locator(LoginPageLocators.USERNAME)).to_be_visible()
+    expect(page.locator(LoginPageLocators.USER_EMAIL)).to_be_visible()
+    expect(page.locator(LoginPageLocators.USER_AVATAR)).to_be_visible()
+    expect(page.locator(LoginPageLocators.USER_LOGOUT_BTN)).to_be_visible()
 
 
 # Логаут
@@ -95,6 +95,6 @@ def test_logout(page: Page):
     user_profile = page.locator('.header-user-info')
 
     user_profile.click()
-    page.locator(profile_element.user_logout).click()
+    page.locator(LoginPageLocators.USER_LOGOUT_BTN).click()
 
     login_page.verify_page_opened()

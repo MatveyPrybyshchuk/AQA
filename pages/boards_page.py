@@ -32,7 +32,7 @@ class BoardsPage(BasePage):
         self.description = page.locator('.textarea-modern ')
         self.checkbox_publicdash = page.locator('.checkbox-label')
         self.btn_create_dashboard = page.locator('.btn.btn-primary.btn-md')
-    
+
     def open(self) -> None:
         self.goto(self.path)
 
@@ -59,6 +59,6 @@ class BoardsPage(BasePage):
         self.btn_create_dash.click()
         self.dashname.fill(dashboardname)
         self.dashname.fill(description)
-        if public: 
+        if public:
             self.checkbox_publicdash.check()
         self.btn_create_dashboard.click()

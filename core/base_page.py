@@ -13,3 +13,4 @@ class BasePage:
     def verify_page_opened(self, url: str, title: str) -> None:
         expect(self.page).to_have_url(f'{self.domain}{url}')
         expect(self.page).to_have_title(title)
+        
