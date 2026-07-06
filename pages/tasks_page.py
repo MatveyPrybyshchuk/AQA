@@ -25,16 +25,13 @@ class TasksPage(BasePage):
         self.filter_form = page.locator('[data-qa="tasks-filters"]')
 
         self.all_tasks = page.locator('.card.mb-6')
-      
 
     def open(self) -> None:
         self.goto(self.path)
 
-
     def verify_page_opened(self) -> None:
         super().verify_page_opened(self.path, self.title)
         expect(self.dashboard_page).to_be_visible()
-
 
     def verify_empty_state(self) -> None:
         expect(self.page_title).to_have_text('Task Management System')

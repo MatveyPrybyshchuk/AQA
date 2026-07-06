@@ -19,10 +19,8 @@ class LoginPage(BasePage):
         self.inputfield_password = page.locator('#id-input-login-password-input')
         self.btn_enter = page.locator('.btn.btn-primary.btn-md.w-full')
 
-
     def open(self) -> None:
         self.goto(self.path)
-
 
     def verify_page_opened(self) -> None:
         super().verify_page_opened(self.path, self.title)
@@ -33,7 +31,6 @@ class LoginPage(BasePage):
         expect(self.inputfield_email).to_be_editable()
         expect(self.inputfield_password).to_be_editable()
         expect(self.btn_enter).to_be_enabled()
-
 
     def login(self, email, password) -> None:
         self.inputfield_email.fill(email)

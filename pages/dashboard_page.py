@@ -34,16 +34,13 @@ class DashboardPage(BasePage):
         self.description = page.locator('.textarea-modern ')
         self.checkbox_publicdash = page.locator('.checkbox-label')
         self.btn_create_dashboard = page.locator('.btn.btn-primary.btn-md')
-        
 
     def open(self) -> None:
         self.goto(self.path)
 
-
     def verify_page_opened(self) -> None:
         super().verify_page_opened(self.path, self.title)
         expect(self.dashboard_page).to_be_visible()
-
 
     def verify_empty_state(self) -> None:
         expect(self.page_title).to_have_text('Task Management System')
@@ -62,11 +59,10 @@ class DashboardPage(BasePage):
         expect(self.stat_done).to_be_visible()
         expect(self.last_dashs).to_be_visible()
 
-
     def create_dashboard(self, dashboardname='', description='', public=False):
         self.btn_create_dash.click()
         self.dashname.fill(dashboardname)
         self.dashname.fill(description)
-        if public: 
+        if public:
             self.checkbox_publicdash.check()
         self.btn_create_dashboard.click()
