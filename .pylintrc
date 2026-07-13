@@ -1,2 +1,5 @@
 [MASTER]
 max-line-length=170
+[MESSAGES CONTROL]
+# Отключаем все проверки invalid-name (не рекомендуется)
+disable=C0103
