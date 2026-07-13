@@ -1,8 +1,5 @@
-[MASTER]
+[FORMAT]
 max-line-length=170
-[MESSAGES CONTROL]
-# Отключаем все проверки invalid-name (не рекомендуется)
-disable=C0103
 
 [MESSAGES CONTROL]
-disable=missing-docstring
+disable=C0103,missing-docstring,C0301
