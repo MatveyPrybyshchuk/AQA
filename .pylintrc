@@ -1,3 +1,5 @@
+[FORMAT]
+max-line-length=170
+
 [MESSAGES CONTROL]
-# Отключаем все проверки invalid-name (не рекомендуется)
-disable=C0103
+disable=C0103,missing-docstring,C0301,C0104,C0105
