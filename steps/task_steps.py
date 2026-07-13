@@ -1,10 +1,9 @@
+import allure
+
 from faker import Faker
-from services.auth_service import AuthentificationService
 from services.task_services import TaskServices
-from services.users_service import UsersService
-from services.boards_service import BoardsService
 
-
+@allure.step("create_fake_task_on_board")
 def create_fake_task_on_board(access_token, board_id):
 
     task_description = Faker().user_name()

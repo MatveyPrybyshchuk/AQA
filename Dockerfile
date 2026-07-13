@@ -1,4 +1,4 @@
-FROM python:3.13-slim
+FROM mcr.microsoft.com/playwright/python:v1.49.0
 LABEL authors="Matvey"
 
 WORKDIR /app
@@ -11,4 +11,4 @@ ENV BASE_URL=http://host.docker.internal:8000
 
 COPY . .
 
-CMD ["pytest"]
+CMD ["pytest", "--alluredir=./allure-results"]

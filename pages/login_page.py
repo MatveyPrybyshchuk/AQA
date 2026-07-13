@@ -1,5 +1,5 @@
+import allure
 from playwright.sync_api import Page, expect
-
 from core.base_page import BasePage
 
 
@@ -19,12 +19,10 @@ class LoginPage(BasePage):
         self.inputfield_password = page.locator('#id-input-login-password-input')
         self.btn_enter = page.locator('.btn.btn-primary.btn-md.w-full')
 
-
     def open(self) -> None:
         self.goto(self.path)
 
-
-    def verify_page_opened(self) -> None:
+    def verify_page_opened(self, url = None, title = None) -> None:
         super().verify_page_opened(self.path, self.title)
         expect(self.form_container).to_be_visible()
         expect(self.section_title).to_be_visible()
@@ -34,7 +32,7 @@ class LoginPage(BasePage):
         expect(self.inputfield_password).to_be_editable()
         expect(self.btn_enter).to_be_enabled()
 
-
+    @allure.step("Logging by UI")
     def login(self, email, password) -> None:
         self.inputfield_email.fill(email)
         self.inputfield_password.fill(password)

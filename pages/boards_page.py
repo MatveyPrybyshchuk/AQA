@@ -1,5 +1,5 @@
+import allure
 from playwright.sync_api import Page, expect
-
 from core.base_page import BasePage
 
 
@@ -32,16 +32,13 @@ class BoardsPage(BasePage):
         self.description = page.locator('.textarea-modern ')
         self.checkbox_publicdash = page.locator('.checkbox-label')
         self.btn_create_dashboard = page.locator('.btn.btn-primary.btn-md')
-        
 
     def open(self) -> None:
         self.goto(self.path)
 
-
-    def verify_page_opened(self) -> None:
+    def verify_page_opened(self, url = None, title = None) -> None:
         super().verify_page_opened(self.path, self.title)
         expect(self.boards_page).to_be_visible()
-
 
     def verify_empty_state(self) -> None:
         expect(self.page_title).to_have_text('Task Management System')
@@ -58,11 +55,11 @@ class BoardsPage(BasePage):
 
         expect(self.all_boards).to_be_visible()
 
-
+    @allure.step("Create dashboard by UI")
     def create_dashboard(self, dashboardname='', description='', public=False):
         self.btn_create_dash.click()
         self.dashname.fill(dashboardname)
         self.dashname.fill(description)
-        if public: 
+        if public:
             self.checkbox_publicdash.check()
         self.btn_create_dashboard.click()

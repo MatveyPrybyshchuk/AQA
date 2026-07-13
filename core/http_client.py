@@ -25,8 +25,7 @@ class HttpClient:
         except requests.exceptions.HTTPError as err:
             logger.error(f'HTTP Error: {err}')
 
-            assert False, f'HTTP Error: {err}'
-
+            raise
 
     def get(self, url, headers: dict | None = None):
         return self.make_request('GET', url, headers=headers)   

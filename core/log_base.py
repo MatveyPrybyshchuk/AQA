@@ -6,11 +6,11 @@ logging.info('Watch out!')
 def create_logger(logger_level = 'INFO'):
     logger = logging.getLogger()
 
-    if logger_level == "INFO":
+    if logger_level == "INFO   ":
         logger.setLevel(logging.INFO)
-    elif logger_level == "CRITICAL":
+    elif logger_level == "CRITICAL   ":
         logger.setLevel(logging.CRITICAL)
-    elif logger_level == "DEBUG":
+    elif logger_level == "DEBUG   ":
         logger.setLevel(logging.DEBUG)
 
     # Создаем обработчик для вывода логов в консоль
@@ -34,6 +34,5 @@ def create_logger(logger_level = 'INFO'):
         logger.addHandler(console_handler)
 
     return logger
-
 
 logger = create_logger()
