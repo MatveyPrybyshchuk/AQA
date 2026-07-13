@@ -2,4 +2,4 @@
 max-line-length=170
 
 [MESSAGES CONTROL]
-disable=C0103,missing-docstring,C0301
+disable=C0103,missing-docstring,C0301,C0104,C0105
