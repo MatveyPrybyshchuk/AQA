@@ -6,7 +6,6 @@ from pages.login_page import LoginPage
 from pages.dashboard_page import DashboardPage
 from pages.boards_page import BoardsPage
 from pages.tasks_page import TasksPage
-from elements import profile_element
 
 @allure.feature("TestBasePage")
 class TestBasePage:
@@ -79,19 +78,18 @@ class TestBasePage:
         login_page.verify_page_opened()
         login_page.login("charlie@example.com", "password123")
 
-        user_profile = page.locator('.header-user-info')
-        username = page.locator('.header-username')
+        user_profile = login_page.user_info
+        username = login_page.username
 
         expect(user_profile).to_be_visible()
         expect(username).to_contain_text("charlie")
 
         user_profile.click()
 
-        expect(page.locator(profile_element.user_username)).to_be_visible()
-        expect(page.locator(profile_element.user_email)).to_be_visible()
-        expect(page.locator(profile_element.user_avatar)).to_be_visible()
-        expect(page.locator(profile_element.user_logout)).to_be_visible()
-
+        expect(login_page.user_name).to_be_visible()
+        expect(login_page.user_mail).to_be_visible()
+        expect(login_page.user_avatar).to_be_visible()
+        expect(login_page.logout_btn).to_be_visible()
 
     @allure.title("test_logout")
     @allure.description("test_logout")
@@ -107,9 +105,8 @@ class TestBasePage:
         boards_page = BoardsPage(page)
         boards_page.open()
 
-        user_profile = page.locator('.header-user-info')
+        login_page.user_info.click()
 
-        user_profile.click()
-        page.locator(profile_element.user_logout).click()
+        login_page.logout_btn.click()
 
         login_page.verify_page_opened()
