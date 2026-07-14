@@ -8,11 +8,10 @@ class TestSubscriptionPage:
     @allure.description("test_open_subscription_page")
     @allure.tag("smoke")
     @pytest.mark.subs
-    def test_open_subscription_page(page: Page):
+    def test_open_subscription_page(self, page: Page):
         subscription_page = SubscriptionPage(page)
         subscription_page.open()
         subscription_page.verify_page_opened()
-
 
     @allure.title("test_period_selector")
     @allure.description("test_period_selector")
@@ -29,7 +28,7 @@ class TestSubscriptionPage:
         (12, "family"),
     ])
     @pytest.mark.subs
-    def test_period_selector(page: Page, months: int, tariff: str):
+    def test_period_selector(self, page: Page, months: int, tariff: str):
         subscription_page = SubscriptionPage(page)
         subscription_page.open()
         subscription_page.verify_page_opened()

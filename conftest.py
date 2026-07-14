@@ -13,53 +13,53 @@ def admin_token():
     yield token.access_token
 
 @fixture
-def random_user(token: str):
+def random_user(admin_token: str):
     user_token = AuthenticationService().registration_user(*get_random_user())
     user_info = UsersService().get_user_me(user_token.access_token)
 
     yield user_token.access_token, user_info
 
     try:
-        UsersService().delete_user_by_id(token, user_id=user_info.id)
+        UsersService().delete_user_by_id(admin_token, user_id=user_info.id)
     except HTTPError as e:
         if e.response.status_code != 404:
             raise
 
 @fixture
-def restore_admin_data(token):
-    admin_info = UsersService().get_user_me(token)
+def restore_admin_data(admin_token):
+    admin_info = UsersService().get_user_me(admin_token)
 
     yield
 
-    UsersService().update_user(token, user_id=admin_info.id, username="admin", email='admin@example.com')
+    UsersService().update_user(admin_token, user_id=admin_info.id, username="admin", email='admin@example.com')
 
 @fixture
-def random_public_board(token):
-    admin_info = UsersService().get_user_me(token)
+def random_public_board(admin_token):
+    admin_info = UsersService().get_user_me(admin_token)
     board_title = Faker().name()
     description = Faker().name()
 
-    new_board = BoardsService().create_board(token, board_title=board_title, description=description, public_status=True)
+    new_board = BoardsService().create_board(admin_token, board_title=board_title, description=description, public_status=True)
 
     yield new_board, board_title, description, admin_info.id
 
-    BoardsService().delete_board_by_id(token, board_id=new_board.id)
+    BoardsService().delete_board_by_id(admin_token, board_id=new_board.id)
 
 @fixture
-def random_private_board(token):
-    admin_info = UsersService().get_user_me(token)
+def random_private_board(admin_token):
+    admin_info = UsersService().get_user_me(admin_token)
     board_title = Faker().name()
     description = Faker().name()
 
-    new_board = BoardsService().create_board(token, board_title=board_title, description=description, public_status=False)
+    new_board = BoardsService().create_board(admin_token, board_title=board_title, description=description, public_status=False)
 
     yield new_board, board_title, description, admin_info.id
 
-    BoardsService().delete_board_by_id(token, board_id=new_board.id)
+    BoardsService().delete_board_by_id(admin_token, board_id=new_board.id)
 
 @fixture
-def random_public_board_by_user(user):
-    user_token, user_info = user
+def random_public_board_by_user(random_user):
+    user_token, user_info = random_user
 
     board_title = Faker().name()
     description = Faker().name()
@@ -71,8 +71,8 @@ def random_public_board_by_user(user):
     BoardsService().delete_board_by_id(user_token, board_id=new_board.id)
 
 @fixture
-def random_private_board_by_user(user):
-    user_token, user_info = user
+def random_private_board_by_user(random_user):
+    user_token, user_info = random_user
 
     board_title = Faker().name()
     description = Faker().name()

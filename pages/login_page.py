@@ -19,6 +19,15 @@ class LoginPage(BasePage):
         self.inputfield_password = page.locator('#id-input-login-password-input')
         self.btn_enter = page.locator('.btn.btn-primary.btn-md.w-full')
 
+        self.user_name = page.locator('.header-user-dropdown-name')
+        self.user_mail = page.locator('.header-user-dropdown-email')
+        self.user_avatar = page.locator('.header-user-dropdown-avatar')
+        self.logout_btn = page.locator("[data-qa='header-logout-button']")
+
+        self.user_info = page.locator(".header-user-info")
+        self.username = page.locator(".header-username")
+
+
     def open(self) -> None:
         self.goto(self.path)
 
